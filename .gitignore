@@ -1,0 +1,20 @@
+# Configs displaced by install.sh, one timestamped dir per run.
+# Anchored to the repo root so a backups/ dir inside a tracked config
+# would still be versioned.
+/backups/
+
+# macOS
+.DS_Store
+
+# Machine-local Claude permission grants
+.claude/settings.local.json
+
+# Runtime state that must never leave this machine
+*.log
+*.sock
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+session.json
+auth.json
+hosts.yml
