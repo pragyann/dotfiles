@@ -7,7 +7,7 @@ Personal macOS configuration, version controlled and symlinked into place.
 ```sh
 git clone git@github.com:pragyann/dotfiles.git ~/github/pragyann/dotfiles
 cd ~/github/pragyann/dotfiles
-brew bundle          # install packages first, so guarded init lines activate
+brew bundle
 ./install.sh --dry-run
 ./install.sh
 ```
