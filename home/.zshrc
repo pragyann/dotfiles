@@ -40,7 +40,7 @@ alias add="git add ."
 alias push="git push"
 alias pull="git pull"
 alias m="git switch main"
-alias cc="claude"
+alias cc="claude --permission-mode auto"
 alias co="codex"
 
 # Starship initialization
