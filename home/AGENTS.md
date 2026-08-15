@@ -8,4 +8,4 @@
 - Apply high standard to engineering excellence: lint, test failures, and test flakiness.
   If you see one, even if it is not caused by what you are working on right now, still flag it.
 - Before using "dynamic workflows", "ultra code" or any harness feature that immediately spawns a large swarm of subagents, always explain the tradeoffs and ask the user for explicit approval.
-- In markdown files, never hard-wrap lines manually. Write each paragraph or list item as a single long line and let the editor soft-wrap it.
+- In markdown files (including any other markdowns like a markdown cell in notebook files), never hard-wrap lines manually. Write each paragraph or list item as a single long line and let the editor soft-wrap it.
