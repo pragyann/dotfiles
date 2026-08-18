@@ -43,7 +43,7 @@ cask "font-jetbrains-mono-nerd-font"
 # Whisper dictation/transcription app
 cask "opensuperwhisper"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
+cask "wezterm@nightly"
 # OpenJDK distribution from Azul
 cask "zulu@8"
 vscode "anthropic.claude-code"
