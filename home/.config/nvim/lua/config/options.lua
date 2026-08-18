@@ -18,8 +18,6 @@ set.smartcase = true
 set.background = "dark"
 set.signcolumn = "yes"
 set.termguicolors = true
--- Let long lines run off the right edge instead of folding onto the next row,
--- so one screen row always means one buffer line.
 set.wrap = false
 
 -- cursor line
@@ -27,7 +25,7 @@ set.cursorline = true
 
 -- split windows
 set.splitbelow = true
-set.splitright= true
+set.splitright = true
 
 -- scrolling
 -- Keep 8 lines of context above and below the cursor, so the view starts
@@ -41,4 +39,3 @@ set.sidescroll = 1
 
 -- faster cursor hold
 set.updatetime = 50
-

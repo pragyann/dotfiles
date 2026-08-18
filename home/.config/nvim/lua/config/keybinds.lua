@@ -16,13 +16,27 @@ vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { desc = "Go to upper window"
 vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Go to right window" })
 
 
--- Window resizing. <cmd> runs the command without leaving the current mode, so
--- these work mid-typing in insert and terminal mode too. In a terminal they
--- shadow the shell's own M-h (run-help) and M-l (down-case-word).
-vim.keymap.set({ "n", "i", "t" }, "<M-h>", "<cmd>vertical resize -2<cr>", { desc = "Narrower window" })
-vim.keymap.set({ "n", "i", "t" }, "<M-j>", "<cmd>resize +2<cr>", { desc = "Taller window" })
-vim.keymap.set({ "n", "i", "t" }, "<M-k>", "<cmd>resize -2<cr>", { desc = "Shorter window" })
-vim.keymap.set({ "n", "i", "t" }, "<M-l>", "<cmd>vertical resize +2<cr>", { desc = "Wider window" })
+-- Window resizing. Alt-hjkl slide the border in the direction pressed, so the
+-- same key moves it the same way from either side of a split. Vim's :resize is
+-- relative instead: it always grows the current window, taking the space from
+-- the window after it, or from the one before it when there is none. Being that
+-- last window is what flips which border moves, and so flips the sign here.
+local function resize(dir, step)
+    local vertical = dir == "h" or dir == "l"
+    local forward = dir == "l" or dir == "j" -- rightwards / downwards
+    local last = vim.fn.winnr(vertical and "l" or "j") == vim.fn.winnr()
+    local delta = (forward ~= last) and step or -step
+    vim.cmd((vertical and "vertical resize " or "resize ") .. ("%+d"):format(delta))
+end
+
+-- A Lua callback keeps the current mode, like <cmd> does, so these work
+-- mid-typing in insert and terminal mode too. In a terminal they shadow the
+-- shell's own M-h (run-help) and M-l (down-case-word).
+for dir, towards in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+    vim.keymap.set({ "n", "i", "t" }, "<M-" .. dir .. ">", function()
+        resize(dir, 2)
+    end, { desc = "Move window border " .. towards })
+end
 
 -- Scrolling one line at a time, so holding the key glides at the keyboard's
 -- repeat rate like j/k instead of teleporting half a screen.
