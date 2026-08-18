@@ -28,6 +28,22 @@ return {
                 left_pad = 2,
                 right_pad = 2,
             },
+            overrides = {
+                -- LSP hover floats size themselves from the raw text and
+                -- don't count the padding, so it overflows the right edge.
+                buftype = {
+                    nofile = {
+                        code = {
+                            disable_background = true,
+                            border = "none",
+                            language_border = " ",
+                            min_width = 0,
+                            left_pad = 0,
+                            right_pad = 0,
+                        },
+                    },
+                },
+            },
             heading = {
                 -- No background bar behind headings: the icon and the coloured
                 -- heading text carry the level on their own.
