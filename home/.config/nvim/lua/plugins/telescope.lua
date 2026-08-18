@@ -21,7 +21,7 @@ return {
                     '--with-filename',
                     '--line-number',
                     '--column',
-                    '--smart-case',
+                    '--ignore-case',
                     '--hidden',
                     '--glob=!**/.git/*',
                 },
@@ -39,8 +39,53 @@ return {
         pcall(telescope.load_extension, 'fzf')
 
         local builtin = require('telescope.builtin')
+
+        -- live grep with case-sensitive and whole-word toggles, bound to <M-c>
+        -- and <M-w> inside the picker. each toggle reopens the picker with the
+        -- matching rg flag, keeping whatever is already typed. state persists
+        -- for the rest of the session.
+        local grep_flags = { case_sensitive = false, whole_word = false }
+
+        local live_grep
+        live_grep = function(default_text)
+            local args = {}
+            local title = 'Live Grep'
+            if grep_flags.case_sensitive then
+                args[#args + 1] = '--case-sensitive'
+                title = title .. ' [Aa]'
+            end
+            if grep_flags.whole_word then
+                args[#args + 1] = '--word-regexp'
+                title = title .. ' [W]'
+            end
+
+            builtin.live_grep({
+                default_text = default_text,
+                additional_args = args,
+                prompt_title = title,
+                attach_mappings = function(bufnr, map)
+                    local actions = require('telescope.actions')
+                    local state = require('telescope.actions.state')
+
+                    local function toggle(flag)
+                        return function()
+                            local text = state.get_current_line()
+                            actions.close(bufnr)
+                            grep_flags[flag] = not grep_flags[flag]
+                            vim.schedule(function() live_grep(text) end)
+                        end
+                    end
+
+                    map({ 'i', 'n' }, '<M-c>', toggle('case_sensitive'))
+                    map({ 'i', 'n' }, '<M-w>', toggle('whole_word'))
+                    return true
+                end,
+            })
+        end
+
         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+        vim.keymap.set('n', '<leader>fg', function() live_grep() end, { desc = 'Telescope live grep' })
+        vim.keymap.set({ 'n', 'v' }, '<leader>fs', builtin.grep_string, { desc = 'Telescope grep word under cursor' })
         vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
     end
