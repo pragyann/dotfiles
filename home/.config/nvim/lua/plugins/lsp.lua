@@ -3,9 +3,9 @@ vim.lsp.config('*', {
 })
 
 vim.diagnostic.config({
+    -- Diagnostics show only as signs in the gutter. `gl` opens the message.
     virtual_text = false,
-    -- Diagnostic messages render on their own lines below the cursor's line.
-    virtual_lines = { current_line = true },
+    virtual_lines = false,
     severity_sort = true,
     float = {
         style = 'minimal',

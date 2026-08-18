@@ -33,6 +33,11 @@ vim.keymap.set({ "n", "i", "t" }, "<M-l>", "<cmd>vertical resize +2<cr>", { desc
 vim.keymap.set({ "n", "v", "x" }, "<C-d>", "1<C-d>", { desc = "Scroll down one line" })
 vim.keymap.set({ "n", "v", "x" }, "<C-u>", "1<C-u>", { desc = "Scroll up one line" })
 
+-- Search
+-- Clears the search highlight. Neovim's default for this is <C-l>, which is
+-- taken by window navigation above.
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
+
 -- Quickfix
 vim.keymap.set("n", "<leader>co", vim.cmd.copen, { desc = "Open quickfix list" })
 vim.keymap.set("n", "<leader>cc", vim.cmd.cclose, { desc = "Close quickfix list" })
