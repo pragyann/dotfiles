@@ -3,7 +3,9 @@ vim.lsp.config('*', {
 })
 
 vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = false,
+    -- Diagnostic messages render on their own lines below the cursor's line.
+    virtual_lines = { current_line = true },
     severity_sort = true,
     float = {
         style = 'minimal',
@@ -24,12 +26,13 @@ vim.diagnostic.config({
 
 local orig = vim.lsp.util.open_floating_preview
 
+-- Caps LSP floats at 80% of the editor width and 60% of its height.
 ---@diagnostic disable-next-line: duplicate-set-field
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts.border = opts.border or 'rounded'
-    opts.max_width = opts.max_width or 80
-    opts.max_height = opts.max_height or 24
+    opts.max_width = opts.max_width or math.max(80, math.floor(vim.o.columns * 0.8))
+    opts.max_height = opts.max_height or math.max(24, math.floor(vim.o.lines * 0.6))
     opts.wrap = opts.wrap ~= false
 
     return orig(contents, syntax, opts, ...)

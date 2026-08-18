@@ -29,8 +29,8 @@ return {
                 right_pad = 2,
             },
             overrides = {
-                -- LSP hover floats size themselves from the raw text and
-                -- don't count the padding, so it overflows the right edge.
+                -- Strips the padding and background from code blocks in LSP
+                -- hover and signature-help floats.
                 buftype = {
                     nofile = {
                         code = {
