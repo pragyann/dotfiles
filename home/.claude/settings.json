@@ -1,5 +1,18 @@
 {
-  "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/pragyan/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
@@ -8,6 +21,5 @@
     "frontend-design@claude-plugins-official": true,
     "frontend-design@claude-code-plugins": true
   },
-  "tui": "fullscreen",
-  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/Users/pragyan/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
+  "tui": "fullscreen"
 }
