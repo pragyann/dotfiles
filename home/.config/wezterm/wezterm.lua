@@ -73,10 +73,11 @@ wezterm.on("window-config-reloaded", function(window)
     size_and_center(window)
 end)
 
--- Sends Alt/Ctrl combos as their own unambiguous escape sequence instead of
+-- Disabled: breaks Enter/Escape in herdr's workspace navigate mode (herdr 0.8.2).
+-- Was: sends Alt/Ctrl combos as their own unambiguous escape sequence instead of
 -- Alt-as-ESC-prefix, so Neovim can't confuse a quick Esc-then-key for <M-key>
 -- and no longer has to wait out ttimeoutlen after every Escape to check.
-config.enable_kitty_keyboard = true
+config.enable_kitty_keyboard = false
 
 config.color_scheme = "rose-pine-moon"
 config.font = wezterm.font("Hack Nerd Font")
