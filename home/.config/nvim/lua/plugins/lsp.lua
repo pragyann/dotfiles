@@ -84,18 +84,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
             php = true,
             cpp = true,
             c = true,
-            -- Prettier formats these, through conform. See plugins/format.lua.
-            -- tsserver's formatter disagrees with Prettier on indent width and
-            -- brace spacing, so letting it run rewrites whole files on save.
-            javascript = true,
-            javascriptreact = true,
-            typescript = true,
-            typescriptreact = true,
-            json = true,
-            jsonc = true,
-            css = true,
-            html = true,
-            yaml = true,
         }
 
         if not client:supports_method('textDocument/willSaveWaitUntil')
