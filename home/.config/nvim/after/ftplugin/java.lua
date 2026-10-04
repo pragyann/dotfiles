@@ -5,7 +5,7 @@ end
 
 -- Falls back to the file's own directory when no project marker is found,
 -- so a loose folder of .java files still gets jdtls attached.
-local root_dir = require('jdtls.setup').find_root({ '.git', 'pom.xml', 'build.gradle' })
+local root_dir = require('jdtls.setup').find_root({ '.git', 'pom.xml', 'build.gradle', '.project' })
     or vim.fn.expand('%:p:h')
 
 local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
