@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Interface Design"
+  short_description: "Apple design guidance for native and web interfaces"
+  default_prompt: "Use $apple-interface-design to design or review this interface for its target platform."

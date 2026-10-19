@@ -25,6 +25,7 @@ Open a new shell afterwards.
 | herdr | `home/.config/herdr/config.toml` | `~/.config/herdr/config.toml` |
 | Claude Code | `home/.claude/` | `~/.claude/*` |
 | Agent memory | `home/AGENTS.md` | `~/.claude/CLAUDE.md` **and** `~/.codex/AGENTS.md` |
+| Apple interface design skill | `home/.agents/skills/apple-interface-design/` | `~/.agents/skills/apple-interface-design` **and** `~/.claude/skills/apple-interface-design` |
 | Packages | `Brewfile` | n/a (`brew bundle`) |
 
 `home/` mirrors the layout of `~`, so a repo path tells you where it lands.
