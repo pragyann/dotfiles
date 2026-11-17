@@ -26,6 +26,7 @@ Open a new shell afterwards.
 | Claude Code | `home/.claude/` | `~/.claude/*` |
 | Agent memory | `home/AGENTS.md` | `~/.claude/CLAUDE.md` **and** `~/.codex/AGENTS.md` |
 | Apple interface design skill | `home/.agents/skills/apple-interface-design/` | `~/.agents/skills/apple-interface-design` **and** `~/.claude/skills/apple-interface-design` |
+| Feature loop skill | `home/.agents/skills/feature-loop/` | `~/.claude/skills/feature-loop` only, as it drives Codex as its reviewer |
 | Packages | `Brewfile` | n/a (`brew bundle`) |
 
 `home/` mirrors the layout of `~`, so a repo path tells you where it lands.
